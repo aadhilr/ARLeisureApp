@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Vendor CSS -->
+    <link href="~/Content/Themes/material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="~/Content/Themes/material/vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Content/Themes/material/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+    <link href="~/Content/Themes/material/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="~/Content/Themes/material/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+    <link href="~/Content/Themes/material/vendors/bower_components/nouislider/distribute/jquery.nouislider.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="~/Content/Themes/material/css/app.min.1.css" rel="stylesheet">
+    <link href="~/Content/Themes/material/css/app.min.2.css" rel="stylesheet">
+
+    <link href="~/Content/Site.css" rel="stylesheet"/>
+    @*<link href="~/Content/Themes/material/vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">*@
+    @*<link href="~/Content/Themes/GlassTheme/css/bootstrap.min.css" rel="stylesheet" />*@
+
+    <link href="~/Content/Themes/GlassTheme/css/smartadmin-skins.min.css" rel="stylesheet" />
+    @*<link href="~/Content/Themes/GlassTheme/css/smartadmin-production.min.css" rel="stylesheet" />*@
+
+    @*<script src="http://www.google.com/uds/api?file=uds.js&v=1.0&key=AIzaSyB6GEhgVHs50QnhOvR3wyCBAWjg9cJTIaw" type="text/javascript">
+        //<![CDATA[
+        // Create a search control
+        var searchControl = new GSearchControl();
+        // create a search object
+        searchControl.addSearcher(new GwebSearch());
+        // tell Google where to draw the searchbox
+        searchControl.draw(document.getElementById("search-box"));
+        GSearch.setOnLoadCallback(OnLoad);
+        //]]>
+
+    </script>*@
+
+</head>
+<body class="">
+    <header id="header" class="clearfix" data-current-skin="teal">
+        <ul class="header-inner">
+            <li id="menu-trigger" data-trigger="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+
+            <li class="hidden-xs">
+                <a href="#" class="m-l-10"><img src="~/Content/Images/PageLogo.png" alt=""></a>
+            </li>
+
+            <li class="pull-right">
+                <ul class="top-menu">
+                    <li id="toggle-width">
+                        <div class="toggle-switch">
+                            <input id="tw-switch" type="checkbox" hidden="hidden" value="true">
+                            <label for="tw-switch" class="ts-helper"></label>
+                        </div>
+                    </li>
+
+                    <li id="top-search">
+                        <a href=""><i class="tm-icon zmdi zmdi-search"></i></a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="">
+                            <i class="tm-icon zmdi zmdi-email"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview">
+                                <div class="lv-header">
+                                    Messages
+                                </div>
+
+                                <a class="lv-footer" href="">View All</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" href="">
+                            <i class="tm-icon zmdi zmdi-notifications"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="listview" id="notifications">
+                                <div class="lv-header">
+                                    Notification
+
+                                    <ul class="actions">
+                                        <li class="dropdown">
+                                            <a href="" data-clear="notification">
+                                                <i class="zmdi zmdi-check-all"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>  
+
+                                <a class="lv-footer" href="">View Previous</a>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="dropdown hidden-xs">
+                        <a data-toggle="dropdown" href="">
+                            <i class="tm-icon zmdi zmdi-view-list-alt"></i>
+                        </a>
+                        <div class="dropdown-menu pull-right dropdown-menu-lg">
+                            <div class="listview">
+                                <div class="lv-header">
+                                    Tasks
+                                </div>
+
+                                <a class="lv-footer" href="">View All</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="hidden-xs" id="chat-trigger" data-trigger="#chat">
+                        <a href=""><i class="tm-icon zmdi zmdi-comment-alt-text"></i></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Top Search Content -->
+        <div id="top-search-wrap">
+            <div class="tsw-inner">
+                <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+
+                @*<a href="https://www.google.lk/"><i id="top-search-close" class="zmdi zmdi-arrow-left"></i></a>
+                <input type="text">*@
+            </div>
+        </div>
+    </header>
+
+    <section id="main" data-layout="layout-1">
+
+        <aside id="sidebar" class="sidebar c-overflow">
+            @Html.Action("ProfileMenuLayout", "Home", new { Area = "" })
+
+            @Html.Action("MenuLayout", "Home", new { Area = "" })
+            @*@Html.Action("MenuLayout", "Home", new { Area = "" })*@
+        </aside>
+
+        <aside id="chat" class="sidebar c-overflow">
+
+            <div class="chat-search">
+                <div class="fg-line">
+                    <input type="text" class="form-control" placeholder="Search People">
+                </div>
+            </div>
+
+            <div class="listview">
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left p-relative">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/2.jpg" alt="">
+                            <i class="chat-status-busy"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Jonathan Morris</div>
+                            <small class="lv-small">Available</small>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/1.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">David Belle</div>
+                            <small class="lv-small">Last seen 3 hours ago</small>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left p-relative">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/3.jpg" alt="">
+                            <i class="chat-status-online"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Fredric Mitchell Jr.</div>
+                            <small class="lv-small">Availble</small>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left p-relative">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/4.jpg" alt="">
+                            <i class="chat-status-online"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Glenn Jecobs</div>
+                            <small class="lv-small">Availble</small>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/5.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Bill Phillips</div>
+                            <small class="lv-small">Last seen 3 days ago</small>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/6.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Wendy Mitchell</div>
+                            <small class="lv-small">Last seen 2 minutes ago</small>
+                        </div>
+                    </div>
+                </a>
+                <a class="lv-item" href="">
+                    <div class="media">
+                        <div class="pull-left p-relative">
+                            <img class="lv-img-sm" src="~/Content/Themes/Material/img/profile-pics/7.jpg" alt="">
+                            <i class="chat-status-busy"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="lv-title">Teena Bell Ann</div>
+                            <small class="lv-small">Busy</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+
+        <section id="content">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </section>
+    </section>
+
+    <footer id="footer">
+        Copyright &copy; 2016 IITS - CITY TOUR
+
+    </footer>
+
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <div class="preloader pls-blue">
+            <svg class="pl-circular" viewBox="25 25 50 50">
+                <circle class="plc-path" cx="50" cy="50" r="20" />
+            </svg>
+
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+        <div class="ie-warning">
+            <h1 class="c-white">Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="~/Content/Themes/material/img/browsers/chrome.png" alt="">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="~/Content/Themes/material/img/browsers/firefox.png" alt="">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="~/Content/Themes/material/img/browsers/opera.png" alt="">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="~/Content/Themes/material/img/browsers/safari.png" alt="">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="~/Content/Themes/material/img/browsers/ie.png" alt="">
+                            <div>IE (New)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+    <!-- Javascript Libraries -->
+    <script src="~/Content/Themes/material/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script src="~/Content/Themes/material/vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+    <script src="~/Content/Themes/material/vendors/sparklines/jquery.sparkline.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+
+    <script src="~/Content/Themes/material/vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js "></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/Waves/dist/waves.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Placeholder for IE9 -->
+    <!--[if IE 9 ]>
+        <script src="~/Content/Themes/material/vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+    <![endif]-->
+
+    <script src="~/Content/Themes/material/js/flot-charts/curved-line-chart.js"></script>
+    <script src="~/Content/Themes/material/js/flot-charts/line-chart.js"></script>
+    <script src="~/Content/Themes/material/js/charts.js"></script>
+
+    <script src="~/Content/Themes/material/js/charts.js"></script>
+    <script src="~/Content/Themes/material/js/functions.js"></script>
+    <script src="~/Content/Themes/material/js/demo.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="~/Content/Themes/material/vendors/bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
+    <script src="~/Scripts/common_functions.js"></script>
+
+    @if (@TempData["ErrorMeassage"] != null && @TempData["ErrorMeassage"].ToString() != "")
+    {
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                ErrorMessage("@TempData["ErrorMeassage"].ToString()", "@TempData["ErrorMeassageContent"].ToString()");
+            });
+        </script>
+    }
+
+    @if (@TempData["SuccessMeassage"] != null && @TempData["SuccessMeassage"].ToString() != "")
+    {
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                SuccessMessage("@TempData["SuccessMeassage"].ToString()", "@TempData["SuccessMeassageContent"].ToString()");
+            });
+        </script>
+    }
+
+</body>
+</html>

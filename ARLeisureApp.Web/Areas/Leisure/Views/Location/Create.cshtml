@@ -1,0 +1,40 @@
+﻿@model ARLeisureApp.Domain.LocationModels.Location
+
+@{
+    ViewBag.Title = "Create Locations";
+}
+<style type="text/css">
+    .windowHeight {
+        height: 90vh;
+    }
+
+    #map {
+        height: 90vh;
+    }
+</style>
+
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-body p-20 windowHeight">
+            @using (Html.BeginForm("Create", "Location", FormMethod.Post, new {@class = "form-horizontal"}))
+            {
+                <div class="card-header">
+                    <h2>Create Location</h2>
+                </div>
+
+                <div class="card-body card-padding">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LocationName ,new {@class = "col-sm-4 control-label"})
+                        <div class="col-sm-6">
+                            <div class="fg-line">
+                            @Html.TextBoxFor(model => model.LocationName, new {@class = "form-control input-sm", @placeholder = "Location Name"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
