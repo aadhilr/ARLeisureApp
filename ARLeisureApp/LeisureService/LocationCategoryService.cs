@@ -12,6 +12,14 @@ namespace ARLeisureApp.LeisureService
     {
         private readonly UnitOfWork _contextUow = new UnitOfWork();
 
+        public IEnumerable<LocationCategory> GetLocationCategories(string includeProperties)
+        {
+            var locationCategories = _contextUow.LocationCategoryRepository.Get(
+                includeProperties: includeProperties);
+
+            return locationCategories;
+        }
+
         public bool InsertLocationCategory(LocationCategory locationCategory)
         {
             try

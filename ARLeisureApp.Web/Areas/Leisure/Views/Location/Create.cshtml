@@ -27,9 +27,48 @@
                         @Html.LabelFor(model => model.LocationName ,new {@class = "col-sm-4 control-label"})
                         <div class="col-sm-6">
                             <div class="fg-line">
-                            @Html.TextBoxFor(model => model.LocationName, new {@class = "form-control input-sm", @placeholder = "Location Name"})
+                                @Html.TextBoxFor(model => model.LocationName, new {@class = "form-control input-sm", @placeholder = "Location Name"})
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Latitude, new { @class = "col-sm-4 control-label" })
+                        @*<label for="inputEmail3" class="col-sm-2 control-label">Company Name</label>*@
+                        <div class="col-sm-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(model => model.Latitude, new { @id = "txtLatitude", @class = "form-control input-sm", @placeholder = "Latitude", })
+                                @*<input type="email" class="form-control input-sm" id="inputEmail3" placeholder="Email">*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Longitude, new { @class = "col-sm-4 control-label" })
+                        @*<label for="inputEmail3" class="col-sm-2 control-label">Company Name</label>*@
+                        <div class="col-sm-6">
+                            <div class="fg-line">
+                                @Html.TextBoxFor(model => model.Longitude, new { @id = "txtLongitude", @class = "form-control input-sm", @placeholder = "Longitude" })
+                                @*<input type="email" class="form-control input-sm" id="inputEmail3" placeholder="Email">*@
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LocationCategoryId, new { @class = "col-sm-4 control-label" })
+                        @*<label for="inputEmail3" class="col-sm-2 control-label">Company Name</label>*@
+                        <div class="col-sm-6">
+                            <div class="col-md-5">
+                                <select id="LocationCategoryId" name="LocationCategoryId" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+          
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary btn-sm button-fixed-width">Save</button>
                     </div>
                 </div>
             }
@@ -38,3 +77,29 @@
     </div>
 
 </div>
+
+@section Scripts{
+    <script href="Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $.getJSON(@Url.Action("GetLocationCategoryListJsonResult", "Location"),
+                function(data) {
+                    var categoryDropDown = $("#LocationCategoryId");
+
+                    categoryDropDown.empty();
+                    categoryDropDown.append("<option value='0'>-- Select Category --</option>");
+
+                    $.each(JSON.parse(data),
+                        function(index, optionaldata) {
+                            categoryDropDown.append($('<option/>', {value: optionaldata.LocationCategoryId}).html(optionaldata.LocationCategoryName));
+                        });
+                    $('#LocationCategoryId').val(@ViewBag.LocationCategoryId).attr("selected", "selected");
+                });
+        });
+
+    </script>
+
+}
